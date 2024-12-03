@@ -96,3 +96,4 @@ A React Native application with a simple message board functionality that allows
 1. **Error States**: Improved UI for handling backend errors gracefully.
 2. **Advanced Features**:
    - Post editing and deletion by users
+3. **Web Compatibility**: The current setup does not support web environments due to the usage of `AsyncStorage` and React Native-specific configurations. This can be addressed in the future by implementing platform-specific solutions or using a unified storage strategy.
