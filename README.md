@@ -1,50 +1,98 @@
-# Welcome to your Expo app 👋
+# Message Board App 📋
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A React Native application with a simple message board functionality that allows users to register, log in, and post messages. Built with Expo and Supabase, the app integrates user authentication, real-time updates, and a dynamic UI.
 
-## Get started
+## Features 🚀
 
-1. Install dependencies
+### Frontend
 
+#### 1. User Authentication
+- Registration screen with email, password, and user profile fields (e.g., avatar, first name, last name)
+- Login screen with email and password
+
+#### 2. Message Board
+- Displays a list of posts with:
+  - Post content
+  - Author's name and avatar
+  - Post creation date (formatted)
+- Real-time updates when new posts are created or deleted
+- Allows logged-in users to create new posts
+
+#### 3. Responsive & Dynamic UI
+- KeyboardAvoidingView ensures inputs are accessible when the keyboard is active
+- Loading skeletons while fetching data
+- Error handling with user-friendly messages
+- Consistent design using Gluestack UI components
+
+#### 4. State Management
+- Authentication state is managed via Supabase
+- Post list dynamically updates based on real-time changes
+
+### Backend
+
+#### 1. Endpoints
+- `POST /register`: Create a new user (handled by Supabase)
+- `POST /login`: Authenticate users and manage sessions (handled by Supabase)
+- `GET /posts`: Fetch all posts with user details (handled by Supabase)
+- `POST /posts`: Create a new post (authentication required)
+
+#### 2. Database
+- Supabase is used as the backend-as-a-service
+- Tables:
+  - **users**: Stores user profiles (e.g., name, avatar)
+  - **posts**: Stores posts with references to user IDs
+
+#### 3. Authentication
+- Supabase handles JWT-based authentication securely
+
+## Installation & Setup 🛠️
+
+### Prerequisites
+- Node.js (>= 18 recommended)
+- Expo CLI installed globally (`npm install -g expo-cli`)
+
+### Steps to Run Frontend
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/PrinceCarter/MessageBoard.git
+   cd MessageBoard
+   ```
+
+2. Install dependencies:
    ```bash
    npm install
    ```
 
-2. Start the app
-
+3. Start the Expo app:
    ```bash
-    npx expo start
+   npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+4. Scan the QR code with the Expo Go app or launch the app in an iOS/Android simulator.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Assumptions & Shortcuts
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+1. **Focus on Core Features**: Time constraints limited advanced functionality such as pagination and post editing.
+2. **Security**: Supabase handles authentication and sensitive data securely, reducing the need for custom implementation.
+3. **Styling**: Used Gluestack UI and NativeWind for a polished yet efficient UI.
 
-## Get a fresh project
+## How It Works 💡
 
-When you're ready, run:
+1. Users register and log in through the Supabase-authenticated backend.
+2. The message board dynamically fetches posts and integrates real-time updates using Supabase's subscription model.
+3. Posts include enriched user details (name, avatar) fetched from the `users` table.
 
-```bash
-npm run reset-project
-```
+## Tools & Libraries 🧰
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+- **Frontend**: React Native, Expo, Gluestack UI, NativeWind
+- **Backend**: Supabase
+- **Real-time Updates**: Supabase's `realtime` channel
+- **State Management**: React useState, useEffect
+- **Styling**: Gluestack UI, Tailwind CSS
 
-## Learn more
+## Known Issues / Future Enhancements ✨
 
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+1. **Error States**: Improved UI for handling backend errors gracefully.
+2. **Advanced Features**:
+   - Post editing and deletion by users
